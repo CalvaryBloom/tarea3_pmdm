@@ -3,15 +3,8 @@
 * AUTOR: BORJA PARDO JUANES
 * FECHA: 07/10/2025 
 *
-* Apartado 5:
-* Implementa las instrucciones necesarias para renderizar en la interfaz gráfica 
-* un convertidor de kilómetros a millas. Para ello, renderiza un componente TextInput 
-* que recoja el contenido que introduzca el usuario, y, debajo, un componente Pressable. 
-* Implementa la lógica necesaria para que cuando el usuario pulse el botón de Pressable, 
-* se renderice debajo del componente TextInput la cantidad de kilómetros introducida convertida a millas. 
-* Si el usuario no introduce ningún dato, saltará una alerta indicándolo y se borrará el contenido 
-* introducido en TextInput. Si introduce texto, se le indicará que ha introducido texto 
-* y se borrará el contenido introducido en TextInput.
+* Apartado 6:
+* Siguiendo las instrucciones del ejercicio anterior, implementa ahora un convertidor de euros a dólares.
 */
 import { Text, Pressable, Image, View, StyleSheet, TextInput } from 'react-native';
 import { useState } from 'react';
@@ -19,32 +12,32 @@ import { useState } from 'react';
 export default function App() {
 
   const [text, setText] = useState('');
-  const [km, setKm] = useState();
+  const [dolar, setDolar] = useState();
 
-  function handleOnPress(number) {
+  function handleOnPress() {
     if (isNaN(text)) {
-      setKm();
+      setDolar();
       alert('Has introducido texto');
     } else if (text === '') {
       alert('No has introducido nada');
-      setKm();
+      setDolar();
     } else if (!isNaN(text)) {
-      let result = text * 0.621371;
-      setKm(result.toFixed(2) + ' millas');
+      let result = text * 1.16;
+      setDolar(result.toFixed(2) + ' $');
     }
     setText('');
   }
 
   return (
     <View style={styles.container}>
-      <Text style={{ padding: 10, fontSize: 28}}>Convertidor de km a millas</Text>
+      <Text style={{ padding: 10, fontSize: 28}}>Convertidor de € a $</Text>
       <TextInput 
         style={{ height: 40 }}
-        placeholder="Inserta kilómetros"
+        placeholder="Inserta euros"
         onChangeText={(newText) => setText(newText)}
         defaultValue={text}
       />
-      <Text style={{ padding: 10, fontSize: 42 }}>{km}</Text>   
+      <Text style={{ padding: 10, fontSize: 42 }}>{dolar}</Text>   
       <Pressable onPress={() => handleOnPress()}>
         <Text style={styles.text}>Convertir</Text>
       </Pressable>   
